@@ -53,7 +53,7 @@ function App() {
         {employees.map((employee) => {
           console.log(employee);
           return (
-            <Employee key={uuidv4()} name={employee.name} role={employee.role} image={employee.image} />
+            <Employee key={uuidv4() } name={employee.name} role={employee.role} image={employee.image} />
           );
           
         })}
