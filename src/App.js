@@ -8,52 +8,71 @@ import profile3 from '../src/images/pexels-barbara-olsen-7870077.jpg'
 
 function App() {
   const [role, setRole] = useState('dev');
-  const [employees, setEmployee] = useState(
+  const [employees, setEmployees] = useState(
     [{
+      id: 1,
       name: 'Ezekiel Mhando',
       role: 'Developer',
       image: profile1
     },
     {
+      id: 2,
       name: 'Praygod Mhando',
       role: 'Admin',
       image: profile2
     },
     {
+      id: 3,
       name: 'Ahadi Mhando',
       role: 'Author',
       image: profile3
     },
     {
+      id: 4,
       name: 'Eliesa Mhando',
       role: 'Data Officer',
       image: profile1
     },
     {
+      id: 5,
       name: 'Neema Mhando',
       role: 'PR',
       image: profile2
     },
     {
+      id: 6,
       name: 'Christina Kirua',
       role: 'Manager',
       image: profile3
     }]
   );
+  function updateEmployee(id, newName, newRole){
+    const updatedEmployees = employees.map((employee) => {
+      if (id === employee.id){
+        //return new employee
+        return {...employee, name: newName, role: newRole};
+      }
+      return employee;
+    });
+    setEmployees(updatedEmployees);
+  }
+
   const showEmployee = true;
   return (
     <div className="App">
       {showEmployee ? 
       <>
-      <input type="text" onChange={(i) => {
-        console.log(i.target.value)
-        setRole(i.target.value);
-      }}/>
       <div className="flex flex-wrap justify-center">
         {employees.map((employee) => {
           console.log(employee);
           return (
-            <Employee key={uuidv4() } name={employee.name} role={employee.role} image={employee.image} />
+            <Employee 
+            key={employee.id}
+            id={employee.id} 
+            name={employee.name} 
+            role={employee.role} 
+            image={employee.image} 
+            updateEmployee = {updateEmployee}/>
           );
           
         })}
